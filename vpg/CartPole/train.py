@@ -1,5 +1,6 @@
 r"""Train the algorithm of REINFORCE with Openai Gym's Cartpole env."""
-import gym
+#import gym
+import gymnasium as gym
 import numpy as np
 from collections import deque
 import matplotlib.pyplot as plt
@@ -14,8 +15,8 @@ from reinforce import reinforce
 
 torch.manual_seed(0)
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-env = gym.make('CartPole-v0')
-env.seed(0)
+env = gym.make('CartPole-v1')
+#env.seed(0)
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 logging.info(f"env: {env}")
 logging.info(f"observation space: {env.observation_space}")

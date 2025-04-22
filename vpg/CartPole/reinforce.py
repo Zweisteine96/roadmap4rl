@@ -16,13 +16,13 @@ def reinforce(
     for i in range(1, n_eps+1):
         saved_log_probs = []
         rewards = []
-        state = env.reset()
+        state, _ = env.reset(seed=0)
         for t in range(max_t):
             action, log_prob = policy.act(state)
             saved_log_probs.append(log_prob)
-            state, reward, done, _ = env.step(action)
+            state, reward, terminated, truncated,  _ = env.step(action)
             rewards.append(reward)
-            if done:
+            if terminated or truncated:
                 break
         scores_deque.append(sum(rewards))
         scores.append(sum(rewards))
